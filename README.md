@@ -24,11 +24,12 @@
 | ---------------- | ---------- | ----------- |
 | name             | string     | null: false |
 | description      | text       | null: false |
+| price            | integer    | null: false |
 | category_id      | integer    | null: false |
+| condition_id     | integer    | null: false |
 | shipping_cost_id | integer    | null: false |
 | prefecture_id    | integer    | null: false |
 | shipping_days_id | integer    | null: false |
-| price            | integer    | null: false |
 | user_id          | references | null: false, foreign_key: true |
 
 ### Association
@@ -42,13 +43,12 @@
 | ------------ | ---------- | ----------- |
 | user_id      | references | null: false, foreign_key: true |
 | item_id      | references | null: false, foreign_key: true |
-| address_id   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
 
 ## addresses テーブル
 
@@ -60,7 +60,8 @@
 | address_line     | string     | null: false |
 | building_name    | string     |
 | phone_number     | string     | null: false |
+| order_id         | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :orders
+- belongs_to :order
