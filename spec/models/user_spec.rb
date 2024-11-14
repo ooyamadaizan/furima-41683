@@ -9,22 +9,24 @@ RSpec.describe User, type: :model do
     context '新規登録できる場合' do
 
       it "nicknameとemail、passwordとpassword_confirmation、first_nameとlast_name、first_name_kanaとlast_name_kana、birthdayが存在すれば登録できる" do
+          expect(@user).to be_valid
       end
-
     end
 
     context '新規登録できない場合' do
 
       # ニックネームのテストコード
       it "nicknameが空では登録できない" do
+        @user.nickname = ''
         @user.valid?
+        expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
 
       # メールアドレスのテストコード
       it "emailが空では登録できない" do
-        @user.nickname = ''
+        @user.email = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+        expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
@@ -54,7 +56,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
       end
-
       it 'passwordが半角数字のみの場合は登録できない' do
         @user.password = '123456'
         @user.valid?
@@ -70,7 +71,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
       end
-
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '1234567'
