@@ -4,7 +4,7 @@ module KanaConverter
   end
 
   def self.generate_random_name
-    name_type = ['kanji', 'hiragana', 'katakana'].sample
+    name_type = %w[kanji hiragana katakana].sample
     case name_type
     when 'kanji'
       Faker::Japanese::Name.first_name
