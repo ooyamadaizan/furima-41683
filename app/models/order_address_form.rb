@@ -9,7 +9,7 @@ class OrderAddressForm
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address_line
-    validates :phone_number, length: { minimum: 10, message: "too short" }, numericality: { only_integer: true }
+    validates :phone_number, length: { minimum: 10, maximum: 11, message: "too short" }, numericality: { only_integer: true }
   end
  
   
