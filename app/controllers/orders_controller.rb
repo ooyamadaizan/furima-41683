@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @order_address_form = OrderAddressForm.new(order_address_form_params)
-    binding.pry
     if @order_address_form.valid?
       @order_address_form.save
       redirect_to root_path
