@@ -1,6 +1,6 @@
 class OrderAddressForm
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address_line, :building_name, :phone_number, :order_id, :token
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address_line, :building_name, :phone_number, :order_id
 
   with_options presence: true do
     validates :user_id
@@ -10,7 +10,6 @@ class OrderAddressForm
     validates :city
     validates :address_line
     validates :phone_number
-    validates :token
   end
  
   
