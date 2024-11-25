@@ -80,6 +80,8 @@ end
   gem 'active_hash'
   gem 'mini_magick'
   gem 'image_processing'
+  gem 'payjp'
+  gem 'gon'
 
 group :production do
   gem 'pg'
