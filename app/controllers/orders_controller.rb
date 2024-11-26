@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :redirect_if_sold, only: [:index, :create]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_address_form = OrderAddressForm.new
   end
 
@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
       @order_address_form.save
       redirect_to root_path
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
   end
@@ -23,7 +23,9 @@ class OrdersController < ApplicationController
   private
 
   def order_address_form_params
-    params.require(:order_address_form).permit(:postal_code, :prefecture_id, :city, :address_line, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token] )
+    params.require(:order_address_form).permit(:postal_code, :prefecture_id, :city, :address_line, :building_name, :phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def set_item
@@ -31,12 +33,12 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_address_form_params[:token],
-        currency: 'jpy'
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: order_address_form_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def redirect_if_sold
@@ -46,5 +48,4 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
   end
-
 end
