@@ -1,4 +1,8 @@
 const pay = () => {
+  const creditCardForm = document.querySelector('.credit-card-form');
+  if (!creditCardForm) return; // 要素が存在しない場合は処理を終了
+  console.log("クレジットカードフォームが見つかりました。支払い処理を開始します！");
+
   const publicKey = gon.public_key
   const payjp = Payjp(publicKey)
   const elements = payjp.elements();
