@@ -1,5 +1,5 @@
 document.addEventListener('turbo:load', function(){
-  const postForm = document.getElementById('new_post');
-  if(!postForm) return null;
+  const previewList = document.getElementById('previews');
+  if(!previewList) return null;
   console.log("preview.jsが読み込まれました");
 });
