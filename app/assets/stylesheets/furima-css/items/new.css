@@ -81,8 +81,8 @@
 }
 
 .img-previews {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
   object-fit: contain;
 }
 

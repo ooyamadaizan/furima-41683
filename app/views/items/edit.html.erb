@@ -9,9 +9,18 @@
     <%= render 'shared/error_messages', model: f.object %>
 
     <div class="img-upload">
-      <div class="weight-bold-text">
-        商品画像
-        <span class="indispensable">必須</span>
+      <div class="image-field">
+        <div class="weight-bold-text">
+          商品画像
+          <span class="indispensable">必須</span>
+        </div>
+        <div id="previews">
+          <% if @item.image.attached? %>
+            <div class="preview">
+              <%= image_tag @item.image, class: "img-previews" %>
+            </div>
+          <% end %>
+        </div>
       </div>
       <div class="click-upload">
         <p>
